@@ -554,13 +554,17 @@ hr {
 .toc-mod-title {
     margin: 0;
     padding: 0.5em;
-    font-size: 1.3em;
+    font-size: 1.1em;
     background-color: #eee;
     outline:1px solid #ddd;
 }
 
 .toc-mod-title.collapsible {
     cursor:pointer;
+}
+
+.toc-mod-title.collapsible a {
+    padding: 3px 5px;
 }
 
 .toc-mod-title.collapsible:before {
