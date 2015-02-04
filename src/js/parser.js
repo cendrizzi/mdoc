@@ -53,10 +53,11 @@ function getTocData(mdown){
     while (matchTitle = rH.exec(mdown)) {
         matchName = rName.exec(matchTitle[1]);
         toc.push({
-           href : matchName[1],
-           title : matchTitle[1].replace(/\\/g, ''),
-           name : (matchName.slice(1,4).join('')),
-           description : getDescription(mdown, rH.lastIndex)
+            href : matchName[1],
+            title : matchTitle[1].replace(/\\/g, ''),
+            shortTitle : matchTitle[1].replace(/{(.*?)}/g, '{}'),
+            name : (matchName.slice(1,4).join('')),
+            description : getDescription(mdown, rH.lastIndex)
         });
     }
 
@@ -82,8 +83,8 @@ function getDescription(mdown, fromIndex) {
     }
 
     desc = showdown.parse(desc.replace(/\n+/, ' '))
-                    .replace(/<\/?p>/g, '') //remove paragraphs
-                    .replace(/<\/?a[^>]*>/g, ''); //remove links since it breaks layout
+        .replace(/<\/?p>/g, '') //remove paragraphs
+        .replace(/<\/?a[^>]*>/g, ''); //remove links since it breaks layout
     return desc;
 }
 
