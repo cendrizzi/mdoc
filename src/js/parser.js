@@ -1,7 +1,6 @@
 
 var Showdown = require('showdown'),
-    converter = new Showdown.converter();
-
+    converter = new Showdown.converter({ extensions: ['table'] });
 
 var _headingLevel;
 
@@ -83,7 +82,7 @@ function getDescription(mdown, fromIndex) {
         return null;
     }
 
-    desc = showdown.makeHtml(desc.replace(/\n+/, ' '))
+    desc = converter.makeHtml(desc.replace(/\n+/, ' '))
         .replace(/<\/?p>/g, '') //remove paragraphs
         .replace(/<\/?a[^>]*>/g, ''); //remove links since it breaks layout
     return desc;
@@ -111,7 +110,7 @@ function parseContent(mdown, toc){
         tocContent += ' - ['+ val.name +'](#'+ val.href +')\n';
     });
 
-    return showdown.makeHtml( pre + tocContent + post );
+    return converter.makeHtml( pre + tocContent + post );
 }
 
 
