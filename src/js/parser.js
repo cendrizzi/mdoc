@@ -56,6 +56,7 @@ function getTocData(mdown){
         toc.push({
             href : matchName[1],
             title : matchTitle[1].replace(/\\/g, ''),
+            shortTitle : matchTitle[1].replace(/{(.*?)}/g, '{}'),
             name : (matchName.slice(1,4).join('')),
             description : getDescription(mdown, rH.lastIndex)
         });
