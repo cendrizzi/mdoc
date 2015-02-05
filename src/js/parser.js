@@ -1,6 +1,7 @@
 
 var Showdown = require('showdown'),
-    converter = new Showdown.converter({ extensions: ['table'] });
+    table = require('./table'),
+    converter = new Showdown.converter({ extensions: [table] });
 
 var _headingLevel;
 
